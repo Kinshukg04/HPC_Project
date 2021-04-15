@@ -23,8 +23,8 @@ def monte_carlo_pi_part(n):
     x1=[]
     y1=[]
     for i in range(n):
-        rand_x=random.random()
-        rand_y=random.random()
+        rand_x=random.uniform(-1, 1)
+        rand_y=random.uniform(-1, 1)
         
         # if it is within the unit circle
         if rand_x*rand_x + rand_y*rand_y <= 1:
