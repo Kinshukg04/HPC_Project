@@ -1,6 +1,8 @@
 from getpoints import getpoint
 import client
 import server 
+import multiprocessing
+from multiprocessing import Pool
 import time
 
 x = input("1 for server  , 2 for client ") 
@@ -17,7 +19,7 @@ if(x==1):
     part_count=[int(val/np) for i in range(np)]
     pool = Pool(processes=np) 
     cp = pool.map(getpoint, part_count)
-
+    cp = sum(cp)
 
     server.send(host,port,cp) 
 
@@ -29,6 +31,7 @@ else:
     part_count=[int(val/np) for i in range(np)]
     pool = Pool(processes=np) 
     cp1 = pool.map(getpoint, part_count)
+    cp1 = sum(cp1)
     cp2=int(client.recv(host,port))
     pi = getpoints.comp(cp1+cp2,val)
     print(pi)
