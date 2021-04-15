@@ -34,10 +34,11 @@ def getpoint(val ):
         square_points+= 1
     plt.scatter(x, y,color='r')
     plt.scatter(x1, y1,color='b')
-    plt.show()    
+    #plt.show()
+    plt.savefig("./graph.png")
     lst=[circle_points ,square_points]
     return lst
-print(getpoint(1000))
+print(getpoint(1000000))
 
 
   
