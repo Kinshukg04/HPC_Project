@@ -11,3 +11,4 @@ def send(host,port,message):
         print(f"Connection from {address} has been established.")
         clientsocket.send(bytes(message,"utf-8"))
         clientsocket.close()
+        break
