@@ -1,4 +1,4 @@
-from getpoints import getpoint
+from getpoints import getpoint,comp
 import client
 import server 
 import multiprocessing
@@ -33,7 +33,7 @@ else:
     cp1 = pool.map(getpoint, part_count)
     cp1 = sum(cp1)
     cp2=int(client.recv(host,port))
-    pi = getpoints.comp(cp1+cp2,val)
+    pi = comp(cp1+cp2,val*2)
     print(pi)
     
         
