@@ -15,4 +15,5 @@ def recv(host,port):
     
         if len(full_msg) > 0:
             print(full_msg)
+            break
    
