@@ -1,4 +1,5 @@
 import socket
+
 def recv(host,port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, port))
@@ -14,4 +15,6 @@ def recv(host,port):
     
         if len(full_msg) > 0:
             print(full_msg)
+            return full_msg
+           
    
