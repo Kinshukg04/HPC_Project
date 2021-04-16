@@ -34,8 +34,8 @@ else:
     np = multiprocessing.cpu_count()
     print ('You have {0:1d} CPUs'.format(np))
     part_count=[int(val/np) for i in range(np)]
-    pool = Pool(processes=np) 
-    cp1 = pool.map(getpoint, part_count)
+    pool2 = Pool(processes=np) 
+    cp1 = pool2.map(getpoint, part_count)
     cp1 = sum(cp1)
     print("locally computed",cp1)
     cp2=int(client.recv(host,port).split('.')[0])
