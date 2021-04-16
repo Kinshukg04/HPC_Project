@@ -7,7 +7,7 @@ import time
 
 x = input("1 for server  , 2 for client ") 
 host=input("input the target host") 
-port=input("input the target port")
+port=int(input("input the target port"))
 
 if(x==1):
     val=input("input the interval") 
