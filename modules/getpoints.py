@@ -17,7 +17,7 @@ def getpoint(val):
 
 def comp(circle_points,interval):
     
-    circle_points,square_points = getpoint(interval)
+    circle_points = getpoint(interval)
     pi = 4* circle_points/ interval
     #print("Final Estimation of Pi = ", pi)  
     return pi

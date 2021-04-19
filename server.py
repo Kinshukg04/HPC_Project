@@ -4,10 +4,7 @@ def conn(host ,port):
     s.bind((host, port))
     s.listen(5)
     
-def send(message):
-   
-    
-    
+def send(message):   
     while True:
         # now our endpoint knows about the OTHER endpoint.
         clientsocket, address = s.accept()

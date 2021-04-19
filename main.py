@@ -1,9 +1,13 @@
-from getpoints import getpoint,comp
+from modules.getpoints import getpoint,comp
 import client
 import server 
 import multiprocessing
 from multiprocessing import Pool
 import time
+import sys
+
+sys.path.append('./')
+
 
 x = int(input("1 for server  , 2 for client ")) 
 host=input("input the host of the server") 
@@ -34,8 +38,8 @@ else:
     np = multiprocessing.cpu_count()
     print ('You have {0:1d} CPUs'.format(np))
     part_count=[int(val/np) for i in range(np)]
-    pool2 = Pool(processes=np) 
-    cp1 = pool2.map(getpoint, part_count)
+    pool = Pool(processes=np) 
+    cp1 = pool.map(getpoint, part_count)
     cp1 = sum(cp1)
     print("locally computed",cp1)
     cp2=int(client.recv(host,port).split('.')[0])
