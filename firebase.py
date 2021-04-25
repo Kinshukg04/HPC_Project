@@ -3,7 +3,7 @@ import pyrebase
 firebaseConfig = {
     "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
     "authDomain": "hpc-procect-2021.firebaseapp.com",
-    "databaseURL" : "https://hpc-procect-2021-default-rtdb.firebaseio.com/",
+    "databaseURL": "https://hpc-procect-2021-default-rtdb.firebaseio.com/",
     "projectId": "hpc-procect-2021",
     "storageBucket": "hpc-procect-2021.appspot.com",
     "messagingSenderId": "716203312467",
@@ -12,41 +12,48 @@ firebaseConfig = {
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
-db=firebase.database()
+db = firebase.database()
 auth = firebase.auth()
-storage=firebase.storage()
+storage = firebase.storage()
+
 
 # login
-def login():
-    email = input("enter email")
-    password = input("enter password")
+def login(email ,password):
     try:
         auth.sign_in_with_email_and_password(email, password)
         print("signed in")
     except:
         print("failed")
 
+
 # signup
-def signup():
-    email = input("enter email")
-    password = input("enter password")
+def signup(email,password):
     try:
         auth.create_user_with_email_and_password(email, password)
-        print("done")
+        print("account created ")
     except:
-        print("failed")
+        print("failed to create an account")
 
-def uploadfile():
-    filename=input("enter the name of file")
-    cfilename=input("name of file u want on cloud")
+
+def uploadfile(filename ,cfilename  ):
+
     storage.child(cfilename).put(filename)
     return storage.child(cfilename).get_url(None)
 
-def geturl():
-    cfilename=input("enter the name of file")
+
+def geturl(cfilename):
     return storage.child(cfilename).get_url(None)
 
-def downloadfile():
-    filename=input("enter the name of file")
-    storage.child(filename).download("" ,filename)
+
+def downloadfile(filename):
+    storage.child(filename).download("", filename)
+
+
+def pushdata(data, mychild):
+    if (mychild == None):
+        db.push(data)
+    else:
+        db.child(mychild).push(data)
+
+
 
