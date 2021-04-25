@@ -55,5 +55,12 @@ def pushdata(data, mychild):
     else:
         db.child(mychild).push(data)
 
+def getdata(mychild):
+    return db.child(mychild).get()
+
+def deletedata(mychild):
+    db.child(mychild).remove()
+
+
 
 
