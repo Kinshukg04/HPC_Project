@@ -35,3 +35,18 @@ def signup():
         print("done")
     except:
         print("failed")
+
+def uploadfile():
+    filename=input("enter the name of file")
+    cfilename=input("name of file u want on cloud")
+    storage.child(cfilename).put(filename)
+    return storage.child(cfilename).get_url(None)
+
+def geturl():
+    cfilename=input("enter the name of file")
+    return storage.child(cfilename).get_url(None)
+
+def downloadfile():
+    filename=input("enter the name of file")
+    storage.child(filename).download("" ,filename)
+
