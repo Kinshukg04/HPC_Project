@@ -1,8 +1,7 @@
 # HPC_Project
 
-### Functions Supported:
-    1) Monte carlo method for pi approximation.
+### Steps to use:
+    - Connect a firebase database:
+        
 
 
-### Functions to add:
-    1) 

@@ -46,7 +46,3 @@ else:
     print("received",cp2)
     pi = comp(cp1+cp2,val*2)
     print(pi)
-    
-        
-    
-    

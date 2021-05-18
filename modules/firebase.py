@@ -18,7 +18,7 @@ storage = firebase.storage()
 
 
 # login
-def login(email ,password):
+def loginFirebase(email ,password):
     try:
         auth.sign_in_with_email_and_password(email, password)
         print("signed in")
@@ -27,7 +27,7 @@ def login(email ,password):
 
 
 # signup
-def signup(email,password):
+def signupFirebase(email,password):
     try:
         auth.create_user_with_email_and_password(email, password)
         print("account created ")
