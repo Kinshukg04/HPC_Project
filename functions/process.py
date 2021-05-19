@@ -4,11 +4,11 @@ import multiprocessing
 import pyrebase
 import sys
 from modules.firebase import *
-from modules.utils import validateEmail, splitList
+from modules.utils import validateEmail, splitList,splitRange
 sys.path.append("../")
 
 
-class mulprocpy:
+class mulpy:
 
     def __init__(self, firebaseConfig):
         """Setting up firebase
@@ -41,6 +41,7 @@ class mulprocpy:
         assert not validateEmail(email), "Email is invalid"
         signupFirebase(email=email, password=password)
 
+
     def splitData(self, input_data, numberOfDevices=2, split_type='split'):
         """Used to split data between devices, 3 split types: split, range, absolute
         Raises:
@@ -49,16 +50,19 @@ class mulprocpy:
             [list]: List contains data for all deivces. Eg: for device 0: list[0] will be the data and so on.
         """
         assert input_data != None, "Input is empty"
-
+        assert numberOfDevices >= 2, "Devices cannot be less than 2"
         if(split_type == 'split'):
 
             if(type(input_data) == int):
                 data = int(input_data/numberOfDevices)
-                return data
+                output_list = []
+                output_list = [data]*numberOfDevices
+                return output_list
 
             elif(type(input_data) == list):
-                data = splitList(input_data, numberOfDevices)
-                return data
+                output_list = []
+                output_list = splitList(input_data, numberOfDevices)
+                return output_list
             else:
                 raise AssertionError('Supported input data types: int,list')
 
@@ -73,32 +77,32 @@ class mulprocpy:
 
             if(type(input_data) == list):
                 assert type(input_data[0]) == int and type(
-                    input_data[1]) == int, "range values should be an integer"
+                    input_data[1]) == int and len(input_data)==2, "range values should be an integer, list[0] is starting range(inclusive) and list[1] is ending range(non-inclusive)"
                 output_list = []
-                starting_range = input_data[0]
-                ending_range = input_data[1]
-                diff = ending_range-starting_range
-                n = int(diff/numberOfDevices)
-                #todo
+                input_range = range(input_data[0],input_data[1])
+                output_list = splitRange(input_range,numberOfDevices)
+                return output_list
 
         elif(split_type == 'absolute'):
-            #todo
             output_list = [input_data]*numberOfDevices
             return output_list
         else:
             raise AssertionError('Incorrect parameters. split_type = split,range,absolute')
 
-    def process(self, file_name, function_name, input_data, devices=2, multiprocess=False, custom_split= False, custom_split_function = None, database = None):
+    def process(self, file_name, function_name, input_data, numberOfDevices=2, multiprocess=False):
 
         assert input_data != None, "Input is empty"
         assert function_name != None, "Function name is empty"
-        assert storage != None, "Storage is not mentioned"
-        assert database != None, "Database is not mentioned"
-        assert devices >= 2, "Devices cannot be less than 2"
+        assert numberOfDevices >= 2, "Devices cannot be less than 2"
 
         database = self.db
         storage = self.storage
+
+        assert storage != None, "Storage is not mentioned"
+        assert database != None, "Database is not mentioned"
+
         url = uploadfile(file_name, file_name)
 
-        jsonData = json.dumps({'fileName': file_name, 'funcName': function_name, 'input_data':input_data})
+        jsonData = json.dumps({'fileName': file_name, 'funcName': function_name, 'input_data': input_data,
+                              'numberOfDevices': numberOfDevices, 'multiprocess': multiprocess})
         #todo
