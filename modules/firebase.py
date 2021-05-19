@@ -1,5 +1,4 @@
 import pyrebase
-
 firebaseConfig = {
     "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
     "authDomain": "hpc-procect-2021.firebaseapp.com",
@@ -15,13 +14,30 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 db = firebase.database()
 auth = firebase.auth()
 storage = firebase.storage()
+userid =""
+username=""
 
+def reset():
+    db = firebase.database()
+    auth = firebase.auth()
+    storage = firebase.storage()
 
 # login
 def loginFirebase(email ,password):
     try:
-        auth.sign_in_with_email_and_password(email, password)
+        global userid
+        global username
+        user=auth.sign_in_with_email_and_password(email, password)
+        username=email.split('@')[0]
+        db.child("users")
+        db.child(username).remove()
+        db.child("users")
+        db.child(username).push(user)
+        db.child(username).child("process")
         print("signed in")
+        userid=user['idToken']
+        reset()
+
     except:
         print("failed")
 
@@ -29,8 +45,17 @@ def loginFirebase(email ,password):
 # signup
 def signupFirebase(email,password):
     try:
+        global userid
+        global username
         auth.create_user_with_email_and_password(email, password)
+        user=auth.sign_in_with_email_and_password(email, password)
+        username=email.split('@')[0]
+        db.child("users")
+        db.child(username).push(user)
+        db.child(username).child("process")
         print("account created ")
+        userid=user['idToken']
+        reset()
     except:
         print("failed to create an account")
 
@@ -60,6 +85,45 @@ def getdata(mychild):
 
 def deletedata(mychild):
     db.child(mychild).remove()
+
+# get the number of devices
+def getnums():
+    val = getdata("users")
+    res=0;
+    for i in val:
+        res=res+1
+    return res
+
+# to remove from registered devices , always do this otherwise error will happen
+def exit():
+    global username
+    db.child("users")
+    db.child(username).remove()
+    reset()
+
+
+
+def distributeprocess( listoftask):
+    itr=0
+    for i in getdata("users"):
+        db.child("users").child(str(i.key)).child("process").push(listoftask[itr])
+        itr=itr+1
+    reset()
+    processrequest()
+
+def ProcessRequestCheck():
+    done=False
+    while(True):
+        for i in db.child("users").child(username).child("process").get() :
+            # process data
+            done=True
+    return
+
+
+loginFirebase("digishek@gmail.com","314fsdg543")
+print(getnums())
+distributeprocess([])
+exit()
 
 
 
