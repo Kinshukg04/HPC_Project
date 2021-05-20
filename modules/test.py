@@ -56,7 +56,7 @@ def Combine(lst):
     print('Estimated pi',4*s/x)
 
 # for host
-"""
+
 loginFirebase("123@123.com" ,"123456789")
 
 lst=GetList()
@@ -70,7 +70,7 @@ lst= ConbineOutput()
 print(lst)
 Combine(lst)
 exit()
-"""
+
 
 #for client
 """

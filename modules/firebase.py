@@ -122,10 +122,13 @@ def distributeprocess( listoftask):
 
 def ProcessRequestCheck():
     done=False
+    try:
+        while(True):
+            for i in db.child("users").child(username).child("process").get() :
+                return (i.val())
+    except:
+        return ProcessRequestCheck()
 
-    while(True):
-        for i in db.child("users").child(username).child("process").get() :
-            return (i.val())
 
 
 def SendOutput(MyOutput):
