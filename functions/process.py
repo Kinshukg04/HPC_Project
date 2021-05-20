@@ -106,3 +106,4 @@ class mulpy:
         jsonData = json.dumps({'fileName': file_name, 'funcName': function_name, 'input_data': input_data,
                               'numberOfDevices': numberOfDevices, 'multiprocess': multiprocess})
         #todo
+        
