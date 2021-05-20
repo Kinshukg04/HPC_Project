@@ -69,6 +69,7 @@ SendOutput(val)
 lst= ConbineOutput()
 print(lst)
 Combine(lst)
+exit()
 """
 
 #for client
@@ -79,6 +80,7 @@ print(val)
 val =Process(val)
 print(val)
 SendOutput(val)
+exit()
 """
 
 
