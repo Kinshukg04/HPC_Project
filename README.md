@@ -2,16 +2,17 @@
 
 ### Steps to use:
 - Connect a firebase database:
-    - Initiate mulpy(fireBaseConfig), firebaseConfig looks like:    firebaseConfig = {
-    "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
-    "authDomain": "hpc-procect-2021.firebaseapp.com",
-    "databaseURL": "https://hpc-procect-2021-default-rtdb.firebaseio.com/",
-    "projectId": "hpc-procect-2021",
-    "storageBucket": "hpc-procect-2021.appspot.com",
-    "messagingSenderId": "716203312467",
-    "appId": "1:716203312467:web:28809fd0b1668af9e0cda6",
-    "measurementId": "G-E4SM5CMNFP"
-    }
+    - Initiate mulpy(fireBaseConfig), firebaseConfig looks like:    
+        firebaseConfig = {
+        "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
+        "authDomain": "hpc-procect-2021.firebaseapp.com",
+        "databaseURL": "https://hpc-procect-2021-default-rtdb.firebaseio.com/",
+        "projectId": "hpc-procect-2021",
+        "storageBucket": "hpc-procect-2021.appspot.com",
+        "messagingSenderId": "716203312467",
+        "appId": "1:716203312467:web:28809fd0b1668af9e0cda6",
+        "measurementId": "G-E4SM5CMNFP"
+        }
 - Login or signup in database by, muply.login(userid,password) and muply.signup(userid,password) respectively.
 
 - mulply.splitData(input_data, numberOfDevices, split_type) is used to split data between multiple devices:
