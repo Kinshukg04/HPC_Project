@@ -1,4 +1,5 @@
 import functions.process
+import modules.firebase as fb
 import random
 import json
 
@@ -26,7 +27,7 @@ def comp(circle_points, interval):
 
 
 x = 10000000
-numberOfdevices = 2
+numberOfdevices = fb.getnums()
 firebaseConfig = {
     "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
     "authDomain": "hpc-procect-2021.firebaseapp.com",
@@ -37,24 +38,26 @@ firebaseConfig = {
     "appId": "1:716203312467:web:28809fd0b1668af9e0cda6",
     "measurementId": "G-E4SM5CMNFP"
 }
+def GetList():
+    m = functions.process.mulpy(firebaseConfig=firebaseConfig)
+    input_data = m.splitData(x,numberOfDevices=numberOfdevices,split_type = 'split')
 
-m = functions.process.mulpy(firebaseConfig=firebaseConfig)
-data = m.splitData(x,numberOfDevices=numberOfdevices,split_type = 'split')
-input_data = []
-for i in range(numberOfdevices):
-    input_data.append(data[i])
-file_name = 'test.py'
-function_name = 'getpoint'
-multiprocess = False
-jsonData = []
-for user in range(0, 2):
-    dict = {}
-    dict = {'fileName': file_name, 'funcName': function_name, 'input_data': input_data[user],
-            'numberOfDevices': 2, 'multiprocess': multiprocess}
-    jsonData.append(dict)
-temp = json.dumps(jsonData)
-x = json.loads(temp)
-s = 0
-for i in input_data:
-    s += getpoint(i)
-print('Estimated pi',4*s/10000000)
+    file_name = 'test.py'
+    function_name = 'getpoint'
+    multiprocess = False
+    jsonData = []
+    for user in range(0, numberOfdevices):
+        dict = {}
+        dict = {'fileName': file_name, 'funcName': function_name, 'input_data': input_data[user],
+                'numberOfDevices': 2, 'multiprocess': multiprocess}
+        jsonData.append(dict)
+    return jsonData
+
+def Process(ele):
+    return getpoint(ele['input_data'])
+
+def Combine(lst):
+    s = 0
+    for i in input_data:
+        s += i
+    print('Estimated pi',4*s/10000000)
