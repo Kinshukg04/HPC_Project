@@ -120,7 +120,7 @@ def ProcessRequestCheck():
 
     while(True):
         for i in db.child("users").child(username).child("process").get() :
-            # process data
+            # process dat
             done=True
     return
 
@@ -135,11 +135,6 @@ def ConbineOutput():
 
 
 
-
-# loginFirebase("digishek@gmail.com","314fsdg543")
-# reset()
-# print(getnums())
-# exit()
 
 
 

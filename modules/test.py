@@ -1,7 +1,8 @@
 import functions.process
-import modules.firebase as fb
+import firebase as fb
 import random
 import json
+from modules.firebase import *
 
 def getpoint(val):
     INTERVAL = val
@@ -27,7 +28,7 @@ def comp(circle_points, interval):
 
 
 x = 10000000
-numberOfdevices = fb.getnums()
+numberOfdevices = 1
 firebaseConfig = {
     "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
     "authDomain": "hpc-procect-2021.firebaseapp.com",
@@ -39,6 +40,7 @@ firebaseConfig = {
     "measurementId": "G-E4SM5CMNFP"
 }
 def GetList():
+    numberOfdevices= getnums()
     m = functions.process.mulpy(firebaseConfig=firebaseConfig)
     input_data = m.splitData(x,numberOfDevices=numberOfdevices,split_type = 'split')
 
@@ -58,6 +60,14 @@ def Process(ele):
 
 def Combine(lst):
     s = 0
-    for i in input_data:
+    for i in lst:
         s += i
-    print('Estimated pi',4*s/10000000)
+    print('Estimated pi',4*s/x)
+
+loginFirebase("123@123.com" ,"123456789")
+
+
+
+
+
+
