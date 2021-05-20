@@ -92,7 +92,7 @@ def deletedata(mychild):
 # get the number of devices
 def getnums():
     val = getdata("users")
-    res=0;
+    res=0
     for i in val:
         res=res+1
     return res
@@ -136,10 +136,10 @@ def ConbineOutput():
 
 
 
-loginFirebase("digishek@gmail.com","314fsdg543")
-reset()
-print(getnums())
-exit()
+# loginFirebase("digishek@gmail.com","314fsdg543")
+# reset()
+# print(getnums())
+# exit()
 
 
 
