@@ -91,7 +91,8 @@ def deletedata(mychild):
 
 # get the number of devices
 def getnums():
-    val = getdata("users")
+    val = getdata("users").val()
+    print(val)
     res=0
     for i in val:
         res=res+1
