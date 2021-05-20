@@ -107,30 +107,38 @@ def exit():
 
 
 def distributeprocess( listoftask):
+    deletedata("output")
     itr=0
     assert len(listoftask)==getnums()
-    for i in getdata("users"):
-        db.child("users").child(str(i.key)).child("process").push(listoftask[itr])
-        itr=itr+1
+    val =getdata("users")
     reset()
-    ProcessRequestCheck()
+    for i in val:
+        print("pushed in ", i.key())
+        db.child("users").child(str(i.key())).child("process")
+        db.push(listoftask[itr])
+        itr=itr+1
+        reset()
+    reset()
 
 def ProcessRequestCheck():
     done=False
 
     while(True):
         for i in db.child("users").child(username).child("process").get() :
-            # process dat
-            done=True
-    return
+            return (i.val())
+
 
 def SendOutput(MyOutput):
+    reset()
     pushdata(MyOutput,"output")
 
 def ConbineOutput():
+    lst=[]
     for i in db.child("output").get():
-        """process output"""
-    return
+        lst.append(i.val())
+    if(len(lst)<getnums()):
+        return ConbineOutput()
+    return lst
 
 
 

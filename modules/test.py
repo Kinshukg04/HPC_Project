@@ -41,7 +41,7 @@ firebaseConfig = {
 }
 def GetList():
     numberOfdevices= getnums()
-    m = functions.process.mulpy(firebaseConfig=firebaseConfig)
+    m = functions.process.mulpy()
     input_data = m.splitData(x,numberOfDevices=numberOfdevices,split_type = 'split')
 
     file_name = 'test.py'
@@ -64,10 +64,31 @@ def Combine(lst):
         s += i
     print('Estimated pi',4*s/x)
 
+# for host
+"""
 loginFirebase("123@123.com" ,"123456789")
 
+lst=GetList()
+distributeprocess(lst)
+val = ProcessRequestCheck()
+print(val)
+val =Process(val)
+print(val)
+SendOutput(val)
+lst= ConbineOutput()
+print(lst)
+Combine(lst)
+"""
 
-
+#for client
+"""
+loginFirebase("1234@1234.com","123456789")
+val = ProcessRequestCheck()
+print(val)
+val =Process(val)
+print(val)
+SendOutput(val)
+"""
 
 
 
