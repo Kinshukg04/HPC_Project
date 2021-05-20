@@ -29,16 +29,7 @@ def comp(circle_points, interval):
 
 x = 10000000
 numberOfdevices = 1
-firebaseConfig = {
-    "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
-    "authDomain": "hpc-procect-2021.firebaseapp.com",
-    "databaseURL": "https://hpc-procect-2021-default-rtdb.firebaseio.com/",
-    "projectId": "hpc-procect-2021",
-    "storageBucket": "hpc-procect-2021.appspot.com",
-    "messagingSenderId": "716203312467",
-    "appId": "1:716203312467:web:28809fd0b1668af9e0cda6",
-    "measurementId": "G-E4SM5CMNFP"
-}
+
 def GetList():
     numberOfdevices= getnums()
     m = functions.process.mulpy()
