@@ -102,8 +102,12 @@ class mulpy:
         assert database != None, "Database is not mentioned"
 
         url = uploadfile(file_name, file_name)
-
-        jsonData = json.dumps({'fileName': file_name, 'funcName': function_name, 'input_data': input_data,
+        jsonData = []
+        numberOfUsers = getnums()
+        print("Number of users connected to database: ",numberOfUsers)
+        for user in range(1,numberOfUsers):
+            temp = json.dumps({'fileName': file_name, 'funcName': function_name, 'input_data': input_data[user],
                               'numberOfDevices': numberOfDevices, 'multiprocess': multiprocess})
+            jsonData.append(temp)
+        distributeprocess(jsonData)
         #todo
-        
