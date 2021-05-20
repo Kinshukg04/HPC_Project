@@ -136,10 +136,7 @@ def ConbineOutput():
 
 
 
-loginFirebase("digishek@gmail.com","314fsdg543")
-reset()
-print(getnums())
-exit()
+
 
 
 
