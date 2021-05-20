@@ -115,7 +115,7 @@ class mulpy:
     # create a list of dictionary
     def CreateList(self):
 
-    #process a list of elements
+    #process an element in list
     def ProcessElement(self):
 
     #send output to a place
