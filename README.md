@@ -3,7 +3,7 @@
 ### Steps to use:
 - Connect a firebase database:
     - Initiate mulpy(fireBaseConfig), firebaseConfig looks like:    
-        ```firebaseConfig = {
+     ```firebaseConfig = {
         "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
         "authDomain": "hpc-procect-2021.firebaseapp.com",
         "databaseURL": "https://hpc-procect-2021-default-rtdb.firebaseio.com/",
