@@ -1,4 +1,5 @@
 import pyrebase
+import time
 firebaseConfig = {
     "apiKey": "AIzaSyC8u9ocZsnDeNqRR-j4e7GJfazS558gw-c",
     "authDomain": "hpc-procect-2021.firebaseapp.com",
@@ -33,7 +34,7 @@ def loginFirebase(email ,password):
         db.child(username).remove()
         db.child("users")
         db.child(username).push(user)
-        db.child(username).child("process")
+        #db.child(username).child("process")
         print("signed in")
         userid=user['idToken']
         reset()
@@ -52,7 +53,7 @@ def signupFirebase(email,password):
         username=email.split('@')[0]
         db.child("users")
         db.child(username).push(user)
-        db.child(username).child("process")
+        #db.child(username).child("process")
         print("account created ")
         userid=user['idToken']
         reset()
@@ -74,16 +75,18 @@ def downloadfile(filename):
     storage.child(filename).download("", filename)
 
 
-def pushdata(data, mychild):
+def pushdata(data, mychild=None):
     if (mychild == None):
         db.push(data)
     else:
         db.child(mychild).push(data)
 
 def getdata(mychild):
+    reset()
     return db.child(mychild).get()
 
 def deletedata(mychild):
+    reset()
     db.child(mychild).remove()
 
 # get the number of devices
@@ -121,18 +124,21 @@ def ProcessRequestCheck():
             done=True
     return
 
-def SendOutput( MyOutput):
+def SendOutput(MyOutput):
     pushdata(MyOutput,"output")
 
 def ConbineOutput():
-    for i in db.child("output"):
-        # process i.val
+    for i in db.child("output").get():
+        """process output"""
+    return
+
+
 
 
 
 loginFirebase("digishek@gmail.com","314fsdg543")
+reset()
 print(getnums())
-#distributeprocess([])
 exit()
 
 
