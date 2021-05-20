@@ -111,3 +111,16 @@ class mulpy:
             jsonData.append(temp)
         distributeprocess(jsonData)
         #todo
+
+    # create a list of dictionary
+    def CreateList(self):
+
+    #process a list of elements
+    def ProcessElement(self):
+
+    #send output to a place
+    def SendOutput(self):
+
+    #combine all the received output
+    def CombineOutput(self):
+
