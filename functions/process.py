@@ -88,7 +88,14 @@ class mulpy:
             return output_list
         else:
             raise AssertionError('Incorrect parameters. split_type = split,range,absolute')
-
+    # def readJson(jsonDict,numberOfDevices = 2):
+    #     x = json.loads(jsonDict)
+    #     for _ in numberOfDevices:
+    #         data = x[0]
+    #         filename = data['filename']
+    #         funcName = data['funcName']
+    #         input_data = data['input_data']
+            
     def process(self, file_name, function_name, input_data, numberOfDevices=2, multiprocess=False):
 
         assert input_data != None, "Input is empty"
@@ -106,9 +113,10 @@ class mulpy:
         numberOfUsers = getnums()
         print("Number of users connected to database: ",numberOfUsers)
         for user in range(1,numberOfUsers):
-            temp = json.dumps({'fileName': file_name, 'funcName': function_name, 'input_data': input_data[user],
-                              'numberOfDevices': numberOfDevices, 'multiprocess': multiprocess})
+            temp = {}
+            temp = {'fileName': file_name, 'funcName': function_name, 'input_data': input_data[user],
+                              'numberOfDevices': numberOfDevices, 'multiprocess': multiprocess}
             jsonData.append(temp)
+        output_json = json.dumps(jsonData)
         distributeprocess(jsonData)
         #todo
-        
