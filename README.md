@@ -13,7 +13,7 @@
         "messagingSenderId": "716203312467",
         "appId": "1:716203312467:web:28809fd0b1668af9e0cda6",
         "measurementId": "G-E4SM5CMNFP"
-                        }
+         }
 - Login or signup in database by, muply.login(userid,password) and muply.signup(userid,password) respectively.
 
 - mulply.splitData(input_data, numberOfDevices, split_type) is used to split data between multiple devices:
