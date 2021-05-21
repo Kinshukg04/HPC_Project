@@ -1,4 +1,6 @@
 import sys
+import time
+
 sys.path.append('../')
 from modules.firebase import *
 import functions.process
@@ -29,7 +31,7 @@ def comp(circle_points, interval):
     return pi
 
 
-x = 100000000
+x = 10000000
 numberOfdevices = 1
 
 def GetList():
@@ -76,7 +78,8 @@ exit()
 #for client
 
 loginFirebase("1234@1234.com","123456789")
-val = ProcessRequestCheck()
+time.sleep(5)
+val = {'fileName': 'test.py', 'funcName': 'getpoint', 'input_data': 5000000, 'numberOfDevices': 2, 'multiprocess': False}
 print(val)
 val =Process(val)
 print(val)

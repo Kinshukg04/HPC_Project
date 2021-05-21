@@ -91,8 +91,7 @@ def deletedata(mychild):
 
 # get the number of devices
 def getnums():
-    val = getdata("users").val()
-    print(val)
+    val = getdata("users")
     res=0
     for i in val:
         res=res+1
@@ -122,12 +121,14 @@ def distributeprocess( listoftask):
     reset()
 
 def ProcessRequestCheck():
+    reset()
     done=False
     try:
         while(True):
             for i in db.child("users").child(username).child("process").get() :
                 return (i.val())
     except:
+        print("failed")
         return ProcessRequestCheck()
 
 

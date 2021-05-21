@@ -29,7 +29,7 @@ def comp(circle_points, interval):
     return pi
 
 
-x = 100000000
+x = 10000000
 numberOfdevices = 1
 
 def GetList():
@@ -61,6 +61,7 @@ def Combine(lst):
 loginFirebase("123@123.com" ,"123456789")
 
 lst=GetList()
+print(lst[1])
 distributeprocess(lst)
 val = ProcessRequestCheck()
 print(val)
