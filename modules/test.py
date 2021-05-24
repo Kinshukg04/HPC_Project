@@ -79,7 +79,6 @@ exit()
 
 loginFirebase("1234@1234.com","123456789")
 time.sleep(5)
-val = {'fileName': 'test.py', 'funcName': 'getpoint', 'input_data': 5000000, 'numberOfDevices': 2, 'multiprocess': False}
 print(val)
 val =Process(val)
 print(val)
