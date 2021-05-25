@@ -3,44 +3,11 @@ import re
 import multiprocessing
 import pyrebase
 import sys
-from modules.firebase import *
 from modules.utils import validateEmail, splitList,splitRange
 sys.path.append("../")
 
 
 class mulpy:
-
-    def __init__(self, firebaseConfig):
-        """Setting up firebase
-
-        Args:
-            firebaseConfig (json): firebaseconfig contains api key,domain etc.
-        """
-        self.firebase = pyrebase.initialize_app(firebaseConfig)
-        self.db = self.firebase.database()
-        self.auth = self.firebase.auth()
-        self.storage = self.firebase.storage()
-
-    def login(self, email, password):
-        """For logging in to firebase
-
-        Args:
-            email (string)
-            password (string)
-        """
-        assert not validateEmail(email), "Email is invalid"
-        loginFirebase(email=email, password=password)
-
-    def signup(self, email, password):
-        """For signing up a new user on firebase
-
-        Args:
-            email (string)
-            password (string)
-        """
-        assert not validateEmail(email), "Email is invalid"
-        signupFirebase(email=email, password=password)
-
 
     def splitData(self, input_data, numberOfDevices=2, split_type='split'):
         """Used to split data between devices, 3 split types: split, range, absolute
@@ -107,7 +74,7 @@ class mulpy:
 
         assert storage != None, "Storage is not mentioned"
         assert database != None, "Database is not mentioned"
-
+        """
         url = uploadfile(file_name, file_name)
         jsonData = []
         numberOfUsers = getnums()
@@ -120,3 +87,9 @@ class mulpy:
         output_json = json.dumps(jsonData)
         distributeprocess(jsonData)
         #todo
+        """
+
+
+
+
+

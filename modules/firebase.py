@@ -107,39 +107,47 @@ def exit():
 
 
 def distributeprocess( listoftask):
+    deletedata("output")
     itr=0
     assert len(listoftask)==getnums()
-    for i in getdata("users"):
-        db.child("users").child(str(i.key)).child("process").push(listoftask[itr])
-        itr=itr+1
+    val =getdata("users")
     reset()
-    ProcessRequestCheck()
+    for i in val:
+        print("pushed in ", i.key())
+        db.child("users").child(str(i.key())).child("process")
+        db.push(listoftask[itr])
+        itr=itr+1
+        reset()
+    reset()
 
 def ProcessRequestCheck():
+    reset()
     done=False
+    try:
+        while(True):
+            for i in db.child("users").child(username).child("process").get() :
+                return (i.val())
+    except:
+        print("failed")
+        return ProcessRequestCheck()
 
-    while(True):
-        for i in db.child("users").child(username).child("process").get() :
-            # process data
-            done=True
-    return
+
 
 def SendOutput(MyOutput):
+    reset()
     pushdata(MyOutput,"output")
 
 def ConbineOutput():
+    lst=[]
     for i in db.child("output").get():
-        """process output"""
-    return
+        lst.append(i.val())
+    if(len(lst)<getnums()):
+        return ConbineOutput()
+    return lst
 
 
 
 
-
-# loginFirebase("digishek@gmail.com","314fsdg543")
-# reset()
-# print(getnums())
-# exit()
 
 
 
